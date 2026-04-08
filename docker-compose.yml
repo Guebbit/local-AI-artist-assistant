@@ -1,0 +1,64 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+      - OLLAMA_NUM_THREAD=1
+      - OLLAMA_KEEP_ALIVE=5m
+    volumes:
+      # To correctly create and pull models in this common directory I can't put "Read-only", but treat like it, BE CAREFUL
+      - /home/${LINUX_USERNAME}/.ollama:/root/.ollama:z,rw
+      # Writable data for container-specific temp/cache
+      - ollama-data:/root/.ollama-data:rw,Z,rprivate
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "nvidia-smi || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    mem_limit: 16g # I have 32
+    shm_size: 8g
+    cpus: "8.0" # I have 16
+    devices:
+      - nvidia.com/gpu=all
+    security_opt:
+      - label=disable
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    depends_on:
+      - ollama
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - MAX_RESPONSE_TOKENS=1024
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:-secret-key-change-me-in-production}
+      - REQUEST_TIMEOUT=120
+      - ENABLE_SIGNUP=${ENABLE_SIGNUP:-true}
+    volumes:
+      - open-webui-data:/app/backend/data:Z
+    restart: unless-stopped
+
+  model-loader:
+    image: ollama/ollama:latest
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    volumes:
+      - ./modelfiles:/modelfiles:rw
+      - ./create-models.sh:/create-models.sh:rw
+    entrypoint: ["bash", "-c"]
+    command: ['/create-models.sh']
+    restart: on-failure
+
+volumes:
+  ollama-data:
+    driver: local
+  open-webui-data:
+    driver: local
