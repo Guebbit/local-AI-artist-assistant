@@ -1,6 +1,7 @@
 import base64
 import json
 from pathlib import Path
+import re
 
 import requests
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -14,7 +15,12 @@ app = FastAPI(title="Local Inkify API")
 
 
 def load_preset(name: str) -> dict:
-    preset_file = PRESETS_DIR / f"{name}.json"
+    if not re.fullmatch(r"[A-Z0-9_]{1,64}", name):
+        raise HTTPException(status_code=400, detail="Invalid preset name format.")
+
+    preset_file = (PRESETS_DIR / f"{name}.json").resolve()
+    if preset_file.parent != PRESETS_DIR.resolve():
+        raise HTTPException(status_code=400, detail="Invalid preset path.")
     if not preset_file.exists():
         raise HTTPException(status_code=404, detail=f"Preset '{name}' not found.")
     return json.loads(preset_file.read_text(encoding="utf-8"))

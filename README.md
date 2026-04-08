@@ -61,7 +61,7 @@ Artist-first local pipeline based on **Stable Diffusion WebUI (AUTOMATIC1111) + 
 ## 2) Container run command (Podman preferred)
 
 ```bash
-cd /home/runner/work/local-AI-artist-assistant/local-AI-artist-assistant
+cd /path/to/local-AI-artist-assistant
 cp .env.example .env
 podman-compose up --build -d
 ```
