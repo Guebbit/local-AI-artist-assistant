@@ -1,0 +1,4 @@
+name,prompt,negative_prompt
+CLEAN_INK,"clean ink lineart, black lines, high detail, no shading","blurry, gray wash, watercolor, artifact, noisy lines"
+TATTOO_STENCIL,"tattoo stencil, bold clean lines, black ink, minimal shading","color splash, photo texture, blur, smudge"
+COMIC_INK,"comic ink lineart, expressive strokes, high contrast","low contrast, muddy lines, painterly shading, blur"

@@ -1,0 +1,14 @@
+{
+  "name": "COMIC_INK",
+  "prompt": "comic ink lineart, expressive strokes, high contrast",
+  "negative_prompt": "muddy edges, low contrast, painterly shading, blur",
+  "sampler_name": "DPM++ 2M Karras",
+  "steps": 20,
+  "cfg_scale": 6,
+  "denoising_strength": 0.5,
+  "controlnet": {
+    "module": "canny",
+    "model": "control_v11p_sd15_canny",
+    "weight": 0.7
+  }
+}

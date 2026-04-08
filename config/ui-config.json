@@ -1,0 +1,18 @@
+{
+  "txt2img/Prompt/value": "",
+  "img2img/Prompt/value": "clean ink lineart, black lines, high detail, no shading",
+  "img2img/Sampling method/value": "DPM++ 2M Karras",
+  "img2img/Sampling steps/value": 20,
+  "img2img/CFG Scale/value": 6,
+  "img2img/Denoising strength/value": 0.35,
+  "img2img/Resize mode/value": 0,
+  "img2img/Width/value": 1024,
+  "img2img/Height/value": 1024,
+  "img2img/Batch count/visible": false,
+  "img2img/Batch size/visible": false,
+  "img2img/Seed/visible": false,
+  "img2img/Subseed/visible": false,
+  "img2img/Variation seed strength/visible": false,
+  "img2img/Resize by/visible": false,
+  "img2img/Hires. fix/visible": false
+}
