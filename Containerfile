@@ -15,7 +15,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
 
 RUN python -m pip install --upgrade pip setuptools wheel
 RUN python -m pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu121
-RUN python -m pip install xformers==0.0.27.post2 fastapi==0.115.0 uvicorn==0.30.6 requests==2.32.3 python-multipart==0.0.9
+RUN python -m pip install xformers==0.0.27.post2 fastapi==0.115.0 uvicorn==0.30.6 requests==2.32.3 python-multipart==0.0.22
 
 WORKDIR /workspace
 COPY . /workspace
