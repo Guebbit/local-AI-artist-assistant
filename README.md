@@ -50,7 +50,7 @@ Artist-first local pipeline based on **Stable Diffusion WebUI (AUTOMATIC1111) + 
 
 ---
 
-## 1) Prereqs (one-time)
+## 1) Prerequisites (one-time)
 
 - NVIDIA driver + CUDA runtime on host
 - Podman + podman-compose

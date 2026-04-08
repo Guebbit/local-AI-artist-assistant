@@ -13,9 +13,14 @@ download_if_missing() {
   local target="$2"
   if [ ! -f "${target}" ]; then
     echo "Downloading $(basename "${target}")..."
-    wget -q --show-progress -O "${target}" "${url}"
+    if wget -q --show-progress -O "${target}" "${url}"; then
+      return 0
+    fi
+    rm -f "${target}"
+    return 1
   else
     echo "Already present: $(basename "${target}")"
+    return 0
   fi
 }
 
