@@ -1,0 +1,22 @@
+{
+  "sd_model_checkpoint": "v1-5-pruned-emaonly.safetensors",
+  "sampler_name": "DPM++ 2M Karras",
+  "steps": 20,
+  "cfg_scale": 6,
+  "ui_tab_order": [
+    "img2img",
+    "txt2img",
+    "extras",
+    "pnginfo",
+    "checkpoint_merger",
+    "train"
+  ],
+  "quicksettings_list": [
+    "sd_model_checkpoint",
+    "sampler_name",
+    "steps",
+    "cfg_scale"
+  ],
+  "send_seed": false,
+  "send_size": true
+}
