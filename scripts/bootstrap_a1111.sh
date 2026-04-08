@@ -51,6 +51,7 @@ run_webui() {
   if [ -f "${CONFIG_DIR}/webui-user.sh" ]; then
     cp "${CONFIG_DIR}/webui-user.sh" "${WEBUI_DIR}/webui-user.sh"
   fi
+  # Scoped to this launch so A1111 can install openai/CLIP in its own venv without pip build isolation.
   PIP_NO_BUILD_ISOLATION=1 ./webui.sh -f
 }
 
