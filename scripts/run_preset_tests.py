@@ -12,6 +12,7 @@ EXAMPLE_B64 = ROOT / "examples" / "input" / "sample_sketch.png.base64"
 API_URL = "http://127.0.0.1:7860/sdapi/v1/img2img"
 DEFAULT_WIDTH = 1024
 DEFAULT_HEIGHT = 1024
+REQUEST_TIMEOUT_SECONDS = 600
 
 
 def load_sample_image() -> str:
@@ -57,7 +58,7 @@ def run():
 
     for preset_path in sorted(PRESETS_DIR.glob("*.json")):
         payload = payload_from_preset(preset_path, sample_b64)
-        response = requests.post(API_URL, json=payload, timeout=600)
+        response = requests.post(API_URL, json=payload, timeout=REQUEST_TIMEOUT_SECONDS)
         response.raise_for_status()
         data = response.json()
         if not data.get("images"):

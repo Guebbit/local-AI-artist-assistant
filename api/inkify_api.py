@@ -14,6 +14,7 @@ PRESET_FILES = {
     "COMIC_INK": PRESETS_DIR / "COMIC_INK.json",
 }
 SD_API = "http://sd-webui:7860/sdapi/v1/img2img"
+REQUEST_TIMEOUT_SECONDS = 600
 
 app = FastAPI(title="Local Inkify API")
 
@@ -75,7 +76,7 @@ async def inkify(image: UploadFile = File(...), preset: str = Form(...)):
 
     image_b64 = base64.b64encode(raw).decode("utf-8")
     payload = make_payload(preset_data, image_b64)
-    r = requests.post(SD_API, json=payload, timeout=600)
+    r = requests.post(SD_API, json=payload, timeout=REQUEST_TIMEOUT_SECONDS)
 
     if r.status_code >= 400:
         raise HTTPException(status_code=502, detail=f"WebUI error: {r.text}")
