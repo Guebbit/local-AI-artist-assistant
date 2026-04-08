@@ -143,7 +143,7 @@ Start with compose (enabled by default in `podman-compose.yml`), then call:
 ```bash
 curl -X POST "http://localhost:8000/inkify" \
   -F "preset=CLEAN_INK" \
-  -F "image=@examples/input/my_sketch.png" \
+  -F "image=@examples/input/sample_sketch.png" \
   --output inked.png
 ```
 

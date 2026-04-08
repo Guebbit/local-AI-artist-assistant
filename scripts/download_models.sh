@@ -26,9 +26,11 @@ download_if_missing \
 
 # Optional SDXL base
 if [ "${DOWNLOAD_SDXL:-1}" = "1" ]; then
-  download_if_missing \
+  if ! download_if_missing \
     "https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors" \
-    "${SD_DIR}/sd_xl_base_1.0.safetensors" || true
+    "${SD_DIR}/sd_xl_base_1.0.safetensors"; then
+    echo "WARNING: SDXL download failed. Continuing with SD1.5 only."
+  fi
 fi
 
 # ControlNet models

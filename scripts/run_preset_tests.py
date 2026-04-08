@@ -1,11 +1,12 @@
 import base64
 import json
+import os
 from pathlib import Path
 
 import requests
 
 
-ROOT = Path("/workspace")
+ROOT = Path(os.getenv("WORKSPACE_DIR", "/workspace"))
 PRESETS_DIR = ROOT / "config" / "presets"
 OUTPUT_DIR = Path("/outputs/test_runs")
 EXAMPLE_B64 = ROOT / "examples" / "input" / "sample_sketch.png.base64"
