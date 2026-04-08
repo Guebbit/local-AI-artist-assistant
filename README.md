@@ -154,4 +154,4 @@ curl -X POST "http://localhost:8000/inkify" \
 - First setup requires internet for cloning repos and model downloads.
 - After setup, generation is local-only.
 - Default generation settings are in `config/webui-user.sh` and `config/presets/*.json`.
-- The startup script sets `PIP_NO_BUILD_ISOLATION=1` to avoid known CLIP wheel build-isolation failures during first AUTOMATIC1111 dependency install.
+- The startup script sets `PIP_NO_BUILD_ISOLATION=1` only for the `webui.sh` launch command to avoid known CLIP wheel build-isolation failures during first AUTOMATIC1111 dependency install.
