@@ -10,6 +10,8 @@ PRESETS_DIR = ROOT / "config" / "presets"
 OUTPUT_DIR = Path("/outputs/test_runs")
 EXAMPLE_B64 = ROOT / "examples" / "input" / "sample_sketch.png.base64"
 API_URL = "http://127.0.0.1:7860/sdapi/v1/img2img"
+DEFAULT_WIDTH = 1024
+DEFAULT_HEIGHT = 1024
 
 
 def load_sample_image() -> str:
@@ -26,8 +28,8 @@ def payload_from_preset(preset_path: Path, image_b64: str) -> dict:
         "steps": preset.get("steps", 20),
         "cfg_scale": preset.get("cfg_scale", 6),
         "denoising_strength": preset["denoising_strength"],
-        "width": 1024,
-        "height": 1024,
+        "width": preset.get("width", DEFAULT_WIDTH),
+        "height": preset.get("height", DEFAULT_HEIGHT),
         "init_images": [image_b64],
         "alwayson_scripts": {
             "controlnet": {
