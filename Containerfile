@@ -25,4 +25,4 @@ RUN /workspace/scripts/bootstrap_a1111.sh
 
 EXPOSE 7860 8000
 
-ENTRYPOINT ["/workspace/scripts/bootstrap_a1111.sh", "run"]
+ENTRYPOINT ["bash", "/workspace/scripts/bootstrap_a1111.sh", "run"]
