@@ -105,18 +105,48 @@ Models are placed in:
 
 ---
 
-## 5) Artist workflow (no coding)
+## 5) Non-tech guide (after container is running)
 
-1. Open browser: `http://localhost:7860`
+### What can this do?
+
+This tool takes a rough sketch and creates cleaner ink-style outputs locally on your machine.
+
+- Turn pencil/rough lines into cleaner line art
+- Try different ink looks quickly (`CLEAN_INK`, `TATTOO_STENCIL`, `COMIC_INK`)
+- Iterate fast by regenerating variations from the same sketch
+- Keep your work local (after initial setup/downloads)
+
+### How can I ink my sketches?
+
+1. Open `http://localhost:7860`
 2. Go to **img2img**
-3. Upload your sketch
-4. Pick style preset (`CLEAN_INK`, `TATTOO_STENCIL`, `COMIC_INK`)
-5. Generate
+3. Upload your sketch (PNG/JPG)
+4. Choose a style preset: `CLEAN_INK`, `TATTOO_STENCIL`, or `COMIC_INK`
+5. Click **Generate**
+6. If needed, generate a few more times and keep your favorite output
+7. Save the image from the WebUI
 
-Where to drop sketches:
+Where to put sketches:
 
-- Put files in `examples/input/` (or anywhere local)
-- Upload from UI
+- Any local folder works (upload manually in browser)
+- Or keep inputs in `examples/input/` for organization
+
+Where outputs go:
+
+- In the WebUI output folder
+- Also available in this repo under `outputs/` (mounted volume)
+
+### For expert users (Krita and other non-Adobe tools)
+
+You can keep your normal drawing workflow and use this project only for the inking pass.
+
+- **Krita**: draw/export sketch as PNG → run through WebUI (`img2img`) → import result back as a new layer for cleanup.
+- **GIMP**: same flow; use generated ink as a top layer and refine with masks/levels.
+- **Inkscape**: run raster ink result through Trace Bitmap if you need vector-friendly linework.
+
+Optional automation for advanced users:
+
+- Use the local API (`POST /inkify`) to send images from scripts or custom tool integrations.
 
 ---
 
