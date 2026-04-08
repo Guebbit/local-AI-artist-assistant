@@ -189,4 +189,4 @@ curl -X POST "http://localhost:8000/inkify" \
 
 The startup script sets `PIP_NO_BUILD_ISOLATION=1` only for the `webui.sh` launch command.
 This avoids known `openai/CLIP` build-isolation failures during first AUTOMATIC1111 dependency install in the WebUI venv.
-The issue is a pip/CLIP packaging compatibility issue, not Podman-specific.
+The issue is a pip/CLIP packaging compatibility issue and can appear in both Podman and Docker setups.
