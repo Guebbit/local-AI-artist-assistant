@@ -46,6 +46,7 @@ setup_webui() {
 run_webui() {
   setup_webui
   cd "${WEBUI_DIR}"
+  export PIP_NO_BUILD_ISOLATION=1
   export COMMANDLINE_ARGS="--listen --port 7860 --api --xformers --ckpt-dir ${DATA_DIR}/models/Stable-diffusion --controlnet-dir ${DATA_DIR}/models/ControlNet --lora-dir ${DATA_DIR}/models/Lora --styles-file /config/styles.csv"
   export WEBUI_CONFIG_FILE="${CONFIG_DIR}/webui-user.sh"
   if [ -f "${CONFIG_DIR}/webui-user.sh" ]; then
